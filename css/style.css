@@ -1,0 +1,80 @@
+.halfOfWindow{
+    width: 50%;
+}
+.btns .disabledBtn{
+    background-color: grey;
+    color: gray;
+}
+.history{
+    margin-left: 50%;
+    display: inline-block;
+    border: 1px pink solid;
+    border-radius: 5px;
+}
+.prevBtn,.nextBtn{
+    background-color: aqua;
+    border: black 2px solid;
+    border-radius: 3px;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.fix{
+    width: auto!important;
+}
+.d-none{
+    display: none!important;
+}
+.canvas{
+    /* position: relative; */
+    margin-right: 5px;
+    margin-left: 5px;
+    border: 1px solid brown;
+    border-radius: 5px;
+    /* display: flex; */
+    /* position: relative; */
+    /* width: 100px; */
+    padding: 10px;
+    /* margin: auto; */
+    text-align: center;
+    /* height: 50px; */
+}
+.d-flex{
+    justify-content: center;
+    padding: 10px;
+    display: flex;
+}
+#root{
+    display: flex;
+}
+.prev{
+    padding: 0;
+    margin-right: 10px;
+}
+.lSAction{
+    display: none!important;
+}
+.next{
+    padding: 0;
+    margin-left: 10px;
+}
+.sliderContainer{
+    width: 110px;
+    /* margin: auto; */
+}
+#lightSlider{
+    /* display: flex; */
+    /* max-width: 500px;width: 100%; */
+}
+.favorite{
+    background-color: pink;
+}
+.page{
+    border: none;
+    width: 30px; height: 30px; border-radius: 5px;
+    background-color: aquamarine;
+}
+.active .page{
+    background-color: green;
+}
