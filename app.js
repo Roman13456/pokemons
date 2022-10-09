@@ -9,7 +9,7 @@ function clearHistory(){
 
 // Вывести список Pokemons https://pokeapi.co/api/v2/pokemon/********
 // Вывести информацию по выбранному герою pokemon/{name || id}*******
-// Добавить кнопку вывода всех эволюций /evolution-chain/{id}/
+// Добавить кнопку вывода всех эволюций /evolution-chain/{id}/****** */
 // Добавить пагинацию***********************************************
 // Получить список всех регионов (начинаем изучать документацию)
 // Получить список всех типов***************************************
@@ -67,9 +67,9 @@ async function requests(type,pageNumber){
 // }
 async function App (){
     clearHistory()
-    root.append( PokemonListContainer)
     const ul = await pokemonsList(await requests('pokemon',1));
-    PokemonListContainer.append(ul)
+    root.append( ul)
+    // PokemonListContainer.append(ul)
     root.append(showInfo())
     const btns = EvolutionButtons()
     historyBtns.append(btns[0])
@@ -92,7 +92,12 @@ function isInsideStorage(str,element){
     initSlider()
     setPages()
 })
-
+function disableBtns(){
+    const prevBtn = document.querySelector('.prevBtn')
+    prevBtn.classList.add('disabledBtn')
+    const nextBtn = document.querySelector('.nextBtn')
+    nextBtn.classList.add('disabledBtn')
+}
 function setPages() {
     const allPages = document.querySelectorAll(".page");
     allPages.forEach((e) => {
@@ -104,7 +109,8 @@ function setPages() {
             ev.target.closest('li').classList.add('active')
             const pageNumber = ev.target.getAttribute("data-page");
             const pokemons = await requests('pokemon',pageNumber)
-            PokemonListContainer.replaceChildren(await pokemonsList(pokemons))
+            disableBtns()
+            root.replaceChildren(await pokemonsList(pokemons),showInfo())
         });
     });
 }

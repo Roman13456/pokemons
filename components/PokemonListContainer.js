@@ -1,2 +1,2 @@
-const PokemonListContainer = document.createElement('div');
-PokemonListContainer.classList.add('halfOfWindow');
+// const PokemonListContainer = document.createElement('div');
+// PokemonListContainer.classList.add('halfOfWindow');

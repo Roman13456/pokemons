@@ -5,12 +5,15 @@ const prevAndNextComponents = ({goToSlide},sliderNumber=3)=>{
     prevButton.addEventListener('click', async () => {
         const pageNumber = document.querySelector('.active .page').getAttribute('data-page')
         if(+pageNumber-1!==0){
+            clearHistory()
+            disableBtns()
             const currentPage = document.querySelector('.active');
             currentPage.classList.remove('active')
             const prevPage = document.querySelector(`button[data-page="${+pageNumber-1}"]`)
             goToSlide(pageNumber-2)
             prevPage.closest('li').classList.add('active')
-            PokemonListContainer.replaceChildren(await pokemonsList(await requests('pokemon',pageNumber-1)))
+            // PokemonListContainer.replaceChildren()
+            root.replaceChildren(await pokemonsList(await requests('pokemon',pageNumber-1)),showInfo())
             
         }    
     })
@@ -24,9 +27,12 @@ const prevAndNextComponents = ({goToSlide},sliderNumber=3)=>{
             const currentPage = document.querySelector('.active');
             currentPage.classList.remove('active')
             const nextPage = document.querySelector(`button[data-page="${+pageNumber+1}"]`)
+            clearHistory()
+            disableBtns()
             goToSlide(pageNumber)
             nextPage.closest('li').classList.add('active')
-            PokemonListContainer.replaceChildren(await pokemonsList(await requests('pokemon',+pageNumber+1)))
+            // PokemonListContainer.replaceChildren(await pokemonsList(await requests('pokemon',+pageNumber+1)))
+            root.replaceChildren(await pokemonsList(await requests('pokemon',+pageNumber+1)),showInfo())
         }
     })
     return [prevButton,nextButton]

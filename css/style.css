@@ -5,11 +5,13 @@
     background-color: grey;
     color: gray;
 }
+.backToUsualPagination{
+    width: 50%;
+}
 .history{
-    margin-left: 50%;
-    display: inline-block;
-    border: 1px pink solid;
-    border-radius: 5px;
+    /* margin-left: 50%; */
+    display: flex;
+    /* justify-content: space-between; */
 }
 .prevBtn,.nextBtn{
     background-color: aqua;
@@ -69,6 +71,9 @@
 }
 .favorite{
     background-color: pink;
+}
+.itemsList{
+    width: 50%;
 }
 .page{
     border: none;
