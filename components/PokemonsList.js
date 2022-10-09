@@ -14,19 +14,13 @@ const pokemonsList = async (arr) => {
             fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
                 .then((data) => data.json())
                 .then((json) => {
-                    // const obj = {
-                    //     name: json.species.name,
-                    //     height: json.height,
-                    //     evolves_to
-                    // }
-                    // sessionStorage.setItem('pokemonHistory',`[${}]`)
                     createDesc(json)});
                 
         }else if(ev.target.tagName === "INPUT"){
             const name = ev.target.nextElementSibling.querySelector('a').getAttribute('data-name');
             if(ev.target.checked){
                 if(localStorage.getItem('favorites')===null){
-                    localStorage.setItem('favorites',`[${name}]` )
+                    localStorage.setItem('favorites',`["${name}"]` )
                 }else{
                     const items = JSON.parse(localStorage.getItem('favorites'));
                     items.push(name)

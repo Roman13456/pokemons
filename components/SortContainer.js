@@ -17,6 +17,7 @@ const sortContainer = async()=>{
             slider.classList.remove('d-none')
             clearHistory()
             disableBtns()
+            this.remove()
         })
         document.querySelector('.backToUsualPagination').replaceChildren(button)
     })

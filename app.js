@@ -32,13 +32,22 @@ async function initSlider (){
         });
 }
 const createLi = ({ name }) => {
-    const bool = isInsideStorage('favorites',`${name}`);
-    return `
+    if(localStorage.getItem('favorites')!==null){
+        const bool = isInsideStorage('favorites',`${name}`);
+        return `
         <li ${bool?'class="favorite"':''}>
             <input id=${name} ${bool?'checked':''} type="checkbox">
             <label for='${name}'><a data-name='${name}' href="#">${name}</a></label>
         </li>
     `
+    }else{
+        return`
+        <li >
+            <input id=${name}  type="checkbox">
+            <label for='${name}'><a data-name='${name}' href="#">${name}</a></label>
+        </li>
+    `
+    }
 }
 async function requests(type,pageNumber){
     if(type=='pokemon'){
