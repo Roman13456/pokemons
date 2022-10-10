@@ -5,6 +5,10 @@
     background-color: grey;
     color: gray;
 }
+.prevAndNext{
+    display: flex;
+    justify-content: center;
+}
 .backToUsualPagination{
     width: 50%;
 }
@@ -48,7 +52,7 @@
     display: flex;
 }
 #root{
-    display: flex;
+    /* display: flex; */
 }
 .prev{
     padding: 0;
@@ -82,4 +86,10 @@
 }
 .active .page{
     background-color: green;
+}
+.sliderContainer{
+    display: flex; justify-content: center"
+}
+.pokemonList{
+    display: flex;
 }

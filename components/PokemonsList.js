@@ -1,5 +1,4 @@
 const pokemonsList = async (arr) => {
-    console.log(arr)
     const liElements = await pokemonsListElements(arr);
     const ul = document.createElement('ul')
     ul.innerHTML = liElements

@@ -16,21 +16,21 @@ function clearHistory(){
 // Реализовать возможность сортировки по типам**************************
 // Добавить героя в избранное. Хранить всех выбранных героев в store***
 // Выделять другим цветом выбранных героев в списке********************
-let slider;
-async function initSlider (){
-        $(document).ready(function () {
-             slider = $("#lightSlider").lightSlider({
-                item: 3,
-                // pager:true,
-                slideMargin: 10,
-                slideEndAnimation: false,
-                pager: false
-            });
-            const prevAndNextButtons = prevAndNextComponents(slider)
-            prevAndNext.prepend(prevAndNextButtons[0]);
-            prevAndNext.append(prevAndNextButtons[1]);
-        });
-}
+// let slider;
+// async function initSlider (){
+//         $(document).ready(function () {
+//              slider = $("#lightSlider").lightSlider({
+//                 item: 3,
+//                 // pager:true,
+//                 slideMargin: 10,
+//                 slideEndAnimation: false,
+//                 pager: false
+//             });
+//             const prevAndNextButtons = prevAndNextComponents(slider)
+//             prevAndNext.prepend(prevAndNextButtons[0]);
+//             prevAndNext.append(prevAndNextButtons[1]);
+//         });
+// }
 const createLi = ({ name }) => {
     if(localStorage.getItem('favorites')!==null){
         const bool = isInsideStorage('favorites',`${name}`);
@@ -71,15 +71,9 @@ async function requests(type,pageNumber){
         return res
     }
 }
-// async function fetchPokemons(type='ghost'){
-//     const res = await requests(type);
-// }
 async function App (){
     clearHistory()
-    const ul = await pokemonsList(await requests('pokemon',1));
-    root.append( ul)
-    // PokemonListContainer.append(ul)
-    root.append(showInfo())
+    ListAndDisplayContainer(root)
     const btns = EvolutionButtons()
     historyBtns.append(btns[0])
     historyBtns.append(btns[1])
@@ -90,38 +84,38 @@ function isInsideStorage(str,element){
     return items.includes(element)
 }
 
-  fetch('https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0')
-  .then((data)=>data.json())
-  .then(({count})=>{
-    prevAndNext.innerHTML = `
-        <div class="sliderContainer">
-            <ul id="lightSlider">${createPagination( Math.ceil(count/20))}</ul>
-        </div>
-    `
-    initSlider()
-    setPages()
-})
+//   fetch('https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0')
+//   .then((data)=>data.json())
+//   .then(({count})=>{
+//     prevAndNext.innerHTML = `
+//         <div class="sliderContainer">
+//             <ul id="lightSlider">${createPagination( Math.ceil(count/20))}</ul>
+//         </div>
+//     `
+//     initSlider()
+//     setPages()
+// })
 function disableBtns(){
     const prevBtn = document.querySelector('.prevBtn')
     prevBtn.classList.add('disabledBtn')
     const nextBtn = document.querySelector('.nextBtn')
     nextBtn.classList.add('disabledBtn')
 }
-function setPages() {
-    const allPages = document.querySelectorAll(".page");
-    allPages.forEach((e) => {
-        e.addEventListener("click", async function (ev) {
-            ev.preventDefault()
-            clearHistory()
-            const currentPage = document.querySelector('li.active');
-            currentPage.classList.remove('active')
-            ev.target.closest('li').classList.add('active')
-            const pageNumber = ev.target.getAttribute("data-page");
-            const pokemons = await requests('pokemon',pageNumber)
-            disableBtns()
-            root.replaceChildren(await pokemonsList(pokemons),showInfo())
-        });
-    });
-}
+// function setPages() {
+//     const allPages = document.querySelectorAll(".page");
+//     allPages.forEach((e) => {
+//         e.addEventListener("click", async function (ev) {
+//             ev.preventDefault()
+//             clearHistory()
+//             const currentPage = document.querySelector('li.active');
+//             currentPage.classList.remove('active')
+//             ev.target.closest('li').classList.add('active')
+//             const pageNumber = ev.target.getAttribute("data-page");
+//             const pokemons = await requests('pokemon',pageNumber)
+//             disableBtns()
+//             root.replaceChildren(await pokemonsList(pokemons),showInfo())
+//         });
+//     });
+// }
 
 

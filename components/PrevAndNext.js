@@ -1,4 +1,5 @@
 const prevAndNextComponents = ({goToSlide},sliderNumber=3)=>{
+    const pokemonList = document.querySelector('.pokemonList')
     let prevButton = document.createElement('button')
     prevButton.setAttribute('class','page prev')
     prevButton.innerHTML = `prev`
@@ -13,7 +14,7 @@ const prevAndNextComponents = ({goToSlide},sliderNumber=3)=>{
             goToSlide(pageNumber-2)
             prevPage.closest('li').classList.add('active')
             // PokemonListContainer.replaceChildren()
-            root.replaceChildren(await pokemonsList(await requests('pokemon',pageNumber-1)),showInfo())
+            pokemonList.replaceChildren(await pokemonsList(await requests('pokemon',pageNumber-1)),showInfo())
             
         }    
     })
@@ -32,7 +33,7 @@ const prevAndNextComponents = ({goToSlide},sliderNumber=3)=>{
             goToSlide(pageNumber)
             nextPage.closest('li').classList.add('active')
             // PokemonListContainer.replaceChildren(await pokemonsList(await requests('pokemon',+pageNumber+1)))
-            root.replaceChildren(await pokemonsList(await requests('pokemon',+pageNumber+1)),showInfo())
+            pokemonList.replaceChildren(await pokemonsList(await requests('pokemon',+pageNumber+1)),showInfo())
         }
     })
     return [prevButton,nextButton]
