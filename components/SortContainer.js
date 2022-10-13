@@ -1,10 +1,8 @@
 const sortContainer = async()=>{
     const select = document.createElement('select')
     select.addEventListener('change',async function(){
-        // const pokemonList = document.querySelector('.pokemonList')
         localStorage.setItem('typeValue',`${this.value}`)
-        root.replaceChildren(await pokemonsList(await requests(`${this.value}`)),showInfo())
-        const slider = document.querySelector('.prevAndNext');
+        ListAndDisplayContainer(root,`${this.value}`)
         const button = document.createElement('button')
         button.innerHTML = 'Back to usual pagination'
         clearHistory()

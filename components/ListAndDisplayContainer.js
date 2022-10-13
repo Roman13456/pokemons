@@ -1,7 +1,13 @@
-const ListAndDisplayContainer = async(node) => {
+const ListAndDisplayContainer = async(node,reqStr='empty') => {
     const div = document.createElement('div')
     div.classList.add('pokemonList')
-    const ul = await pokemonsList(await requests('pokemon',1));
+    let ul;
+    if(reqStr==='empty'){
+        ul = await pokemonsList(await requests('pokemon',1));
+    }else{
+        ul = await pokemonsList(await requests(reqStr));
+    }
+    
     div.append(ul)
     div.append(showInfo())
     node.replaceChildren(div)
